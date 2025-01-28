@@ -1,7 +1,11 @@
-var assert = require("assert");
 
+<<<<<<< HEAD
 var Complex = require("../complex.js");
 const { copyFile } = require("fs");
+=======
+var Complex = require("complex.js");
+var assert = require("assert");
+>>>>>>> main
 
 var functionTests = [{
   set: Complex.I,
@@ -43,7 +47,7 @@ var functionTests = [{
 }, {
   set: "36i",
   fn: "sqrt",
-  expect: "4.242640687119285 + 4.242640687119285i"
+  expect: "4.242640687119285 + 4.242640687119286i"
 }, {
   set: Infinity,
   fn: "mul",
@@ -52,7 +56,7 @@ var functionTests = [{
 }, {
   set: "-36i",
   fn: "sqrt",
-  expect: "4.242640687119285 - 4.242640687119285i"
+  expect: "4.242640687119285 - 4.242640687119286i"
 }, {
   set: "4 + 2i",
   fn: "div",
@@ -816,6 +820,9 @@ var constructorTests = [{
 }, {
   set: { r: Infinity, phi: NaN },
   expect: "NaN"
+},{
+  set: "1000_000i",
+  expect: "1000000i"
 }
 ];
 
@@ -940,7 +947,10 @@ describe("Complex Details", function () {
     assert.strictEqual(one.acos().toString(), "0.9045568943023813 - 1.0612750619050355i");
     assert.strictEqual(one.atan().toString(), "1.0172219678978514 + 0.40235947810852507i");
 
-    assert.strictEqual(Complex(3, 4).abs(), 5);
+    var t = Complex(3, 4);
+    assert.strictEqual(t.asinh().toString(), "2.29991404087927 + 0.9176168533514786i");
+
+    assert.strictEqual(t.abs(), 5);
 
     assert.strictEqual(Complex("5i + 3").log().exp().toString(), "3 + 5i")
     assert.strictEqual(Complex("-2i - 1").log().exp().toString(), "-1 - 2i")
@@ -1062,6 +1072,19 @@ describe("Complex Details", function () {
     var n = Complex(Math.E * Math.E).log().div("i").mul(-Math.PI * 2, 1);
 
     assert.strictEqual(n.toString(), '2 + ' + 4 * Math.PI + "i");
+  });
+
+  it('should follow exp rules', function () {
+
+    var a = Math.random() * 10;
+    var b = Math.random() * 10;
+
+    var t1 = Complex({re: a, im: b}).exp();
+    var t2 = Complex(a).exp().mul(Complex.I.mul(b).exp());
+    var t3 = Complex(a).exp().mul(Complex({re:0, im: b}).exp());
+
+    assert.strictEqual(t1.toString(), t2.toString());
+    assert.strictEqual(t2.toString(), t3.toString());
   });
 
 });
