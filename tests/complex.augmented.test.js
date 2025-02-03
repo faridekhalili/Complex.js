@@ -136,6 +136,8 @@ describe('Random sample tests', () => {
         assert.deepEqual(c.asec(), new Complex(0, Infinity))
     });
 
+    // Difficult to test. 
+    // Likely requires importing the library as an ES Module.
     // it('Sample 7', () => {
     //   /**
     //     BooleanLiteral
