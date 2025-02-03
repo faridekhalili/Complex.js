@@ -1,11 +1,6 @@
-
-<<<<<<< HEAD
-var Complex = require("../complex.js");
+var Complex = require("../dist/complex.js");
 const { copyFile } = require("fs");
-=======
-var Complex = require("complex.js");
 var assert = require("assert");
->>>>>>> main
 
 var functionTests = [{
   set: Complex.I,
@@ -820,7 +815,7 @@ var constructorTests = [{
 }, {
   set: { r: Infinity, phi: NaN },
   expect: "NaN"
-},{
+}, {
   set: "1000_000i",
   expect: "1000000i"
 }
@@ -1079,9 +1074,9 @@ describe("Complex Details", function () {
     var a = Math.random() * 10;
     var b = Math.random() * 10;
 
-    var t1 = Complex({re: a, im: b}).exp();
+    var t1 = Complex({ re: a, im: b }).exp();
     var t2 = Complex(a).exp().mul(Complex.I.mul(b).exp());
-    var t3 = Complex(a).exp().mul(Complex({re:0, im: b}).exp());
+    var t3 = Complex(a).exp().mul(Complex({ re: 0, im: b }).exp());
 
     assert.strictEqual(t1.toString(), t2.toString());
     assert.strictEqual(t2.toString(), t3.toString());
@@ -1102,7 +1097,7 @@ describe('First tests', () => {
       cachedFunction = globalThis.Math.cosh;
       globalThis.Math.cosh = undefined;
 
-      const complex = require('../complex.js');
+      const complex = require('../dist/complex.js');
       Complex = complex.Complex;
     });
 
@@ -1211,5 +1206,58 @@ describe('Random sample tests', () => {
       c.acosh(),
       new Complex.Complex({ 're': 0.8813735870195429, 'im': -1.5707963267948966 })
     );
+  });
+
+  it('Sample 6', () => {
+    /**
+      StringLiteral
+      complex.js:865:20
+      -         var a = this['re'];
+      +         var a = this[\"\"];
+     */
+    const c = new Complex.Complex(0, 0);
+    assert.deepEqual(c.asec(), new Complex(0, Infinity))
+  });
+
+  // it('Sample 7', () => {
+  //   /**
+  //     BooleanLiteral
+  //     complex.js:1416:61
+  //     -       Object.defineProperty(Complex, \"__esModule\", { 'value': true });
+  //     +       Object.defineProperty(Complex, \"__esModule\", { 'value': false });
+  //    */
+  // });
+
+  it('Sample 8', () => {
+    /**
+      ArithmeticOperator
+      complex.js:898:15
+      -         var d = a * a + b * b;
+      +         var d = a / a + b * b;
+     */
+    const c = new Complex.Complex(1, 0);
+    assert.deepEqual(c.acsc(), new Complex(1.5707963267948966, -0))
+  });
+
+  it('Sample 9', () => {
+    /**
+      ArithmeticOperator
+      complex.js:1139:15
+      -         var d = a * a + b * b;
+      +         var d = a / a + b * b;
+     */
+    const c = new Complex.Complex(2, 2);
+    assert.deepEqual(c.acsch(), new Complex(0.25489557334055074, -0.24452216513554018))
+  });
+
+  it('Sample 10', () => {
+    /**
+      EqualityOperator
+      complex.js:1140:15
+      -         return (d !== 0)
+      +         return (d === 0)
+     */
+    const c = new Complex.Complex([0], [0])
+    assert.deepEqual(c.acsch(), new Complex(NaN, NaN))
   });
 });
