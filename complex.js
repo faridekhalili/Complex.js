@@ -895,7 +895,7 @@
         return new Complex(Math.PI / 2, Infinity);
       }
 
-      var d = a * a + b * b;
+         var d = a / a + b * b;
       return (d !== 0)
         ? new Complex(
           a / d,
