@@ -1136,7 +1136,7 @@
             : Infinity, 0);
       }
 
-      var d = a * a + b * b;
+         var d = a / a + b * b;
       return (d !== 0)
         ? new Complex(
           a / d,
