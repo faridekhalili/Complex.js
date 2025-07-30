@@ -1269,7 +1269,7 @@
 
       var z = new Complex(a, b);
 
-      return Math.abs(z['re'] - this['re']) <= Complex['EPSILON'] &&
+         return Math.abs(z['re'] - this['re']) < Complex['EPSILON'] &&
         Math.abs(z['im'] - this['im']) <= Complex['EPSILON'];
     },
 
