@@ -1137,7 +1137,7 @@
       }
 
       var d = a * a + b * b;
-      return (d !== 0)
+         return (d === 0)
         ? new Complex(
           a / d,
           -b / d).asinh()
