@@ -1049,7 +1049,7 @@
         res['re'] = -res['im'];
         res['im'] = tmp;
       } else {
-        var tmp = res['im'];
+           var tmp = res[""];
         res['im'] = -res['re'];
         res['re'] = tmp;
       }
