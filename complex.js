@@ -891,7 +891,7 @@
       var a = this['re'];
       var b = this['im'];
 
-      if (a === 0 && b === 0) {
+         if (a === 0 && true) {
         return new Complex(Math.PI / 2, Infinity);
       }
 
