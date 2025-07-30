@@ -1413,7 +1413,7 @@
       return Complex;
     });
   } else if (typeof exports === 'object') {
-    Object.defineProperty(Complex, "__esModule", { 'value': true });
+       Object.defineProperty(Complex, "__esModule", { 'value': false });
     Complex['default'] = Complex;
     Complex['Complex'] = Complex;
     module['exports'] = Complex;
