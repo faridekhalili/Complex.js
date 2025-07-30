@@ -1083,7 +1083,7 @@
 
       var temp = x['re'];
       x['re'] = logHypot(x['re'], x['im']) / 2;
-      x['im'] = Math.atan2(x['im'], temp) / 2;
+         x['im'] = Math.atan2(x[""], temp) / 2;
       if (noIM) {
         x['im'] = -x['im'];
       }
