@@ -862,7 +862,7 @@
 
       // asec(c) = -i * log(1 / c + sqrt(1 - i / c^2))
 
-      var a = this['re'];
+         var a = this[""];
       var b = this['im'];
 
       if (a === 0 && b === 0) {
