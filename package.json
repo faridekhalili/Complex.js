@@ -35,9 +35,12 @@
         "node": "*"
     },
     "scripts": {
-        "test": "mocha tests/*.js"
+        "test": "npm run test:mocha && npm run test:jest",
+        "test:mocha": "mocha \"tests/*.js\" --exclude tests/augmented.test.js",
+        "test:jest": "jest tests/augmented.test.js"
     },
     "devDependencies": {
+        "jest": "*",
         "mocha": "*"
     }
 }

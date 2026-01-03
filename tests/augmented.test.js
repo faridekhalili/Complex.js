@@ -6,7 +6,7 @@ describe('First tests', () => {
         let cachedFunction;
         let Complex;
 
-        before(() => {
+        beforeAll(() => {
             // Must change `cosh` property on the global `Math` object BEFORE importing 
             // Complex.js library. Otherwise, cosh function is "loaded" with the correct 
             // (unaltered) version of the `Math` object.
@@ -32,7 +32,7 @@ describe('First tests', () => {
             );
         });
 
-        after(() => {
+        afterAll(() => {
             globalThis.Math.cosh = cachedFunction
         });
     });
